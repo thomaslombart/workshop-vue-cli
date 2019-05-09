@@ -119,6 +119,20 @@ new Vue({
     filters: ["all", "active", "done"],
     currentFilter: "all"
   },
+  mounted() {
+    const localTodos = localStorage.getItem("vue-todos");
+    if (localTodos) {
+      this.todos = JSON.parse(localTodos);
+    }
+  },
+  watch: {
+    todos: {
+      handler() {
+        localStorage.setItem("vue-todos", JSON.stringify(this.todos));
+      },
+      deep: true
+    }
+  },
   computed: {
     filteredTodos() {
       switch (this.currentFilter) {
@@ -177,6 +191,8 @@ Here are the different steps to build this app:
 20. Add a computed property called `filteredTodos` to the main instance and filter the correct todos depending on the value of `currentFilter`.
 21. In the `v-for` statement in `todo-item`, replace the `todos` list by the `filteredTodos` computed property.
 22. Differentiate the filter by styling the active one.
+23. To save the todos in the local storage, add a **deep** watcher on the `todos` array. This watcher will be triggered on every change and will set the todos in the local storage.
+24. When the main component is mounted fetch the todos in the local storage and set them in the data.
 
 Some takeaways from this code:
 
