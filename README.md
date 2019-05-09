@@ -4,7 +4,7 @@
  
 ## Explaining a To-Do list
 
-In the last workshop, your task was to build a to-do app that would allow you to add tasks, mark them as completed, edit and delete them. You could also filter them depending on their status and provide some design. Let's see how one can make such an app.
+In the last workshop, your task was to build a to-do app that would allow you to add tasks, mark them as completed, edit and delete them. You could also filter them depending on their status and provide some design. Here is the full code:
 
 ```html
 <html>
@@ -43,13 +43,14 @@ In the last workshop, your task was to build a to-do app that would allow you to
         No to-dos!
       </p>
       <ul class="list-reset flex mt-3">
-        <filter-todo
+        <li
           v-for="filter in filters"
-          @click.native="currentFilter = filter"
-          :active="currentFilter === filter"
+          @click="currentFilter = filter"
+          class="rounded-full uppercase px-2 py-1 text-xs font-bold mr-2 cursor-pointer"
+          :class="currentFilter === filter ? 'bg-blue-dark text-white' : 'bg-grey-lighter text-grey-darker'"
         >
           {{ filter }}
-        </filter-todo>
+        </li>
       </ul>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
@@ -110,18 +111,6 @@ Vue.component("todo-item", {
   }
 });
 
-Vue.component("filter-todo", {
-  template: `
-    <li 
-      class="rounded-full uppercase px-2 py-1 text-xs font-bold mr-2 cursor-pointer" 
-      :class="active ? 'bg-blue-dark text-white' : 'bg-grey-lighter text-grey-darker'"
-    >
-      <slot></slot>
-    </li>
-  `,
-  props: ["active"]
-});
-
 new Vue({
   el: "#app",
   data: {
@@ -163,3 +152,35 @@ new Vue({
   }
 });
 ```
+
+Here are the different steps to build this app:
+
+1. Provide the basic HTML template and render the Vue app inside a root element
+2. Decide the model of what's a todo (a `name` and whether it's `done` or not). Provide an array of todos to your `data`.
+3. Render an initial list of todos in the template (don't forget to use `key`!)
+4. Add an input and bind it to a data property (`nextTodo`) using `v-model`.
+5. Create an add button or use a `keyup` event to add the todo in the list of todos. 
+6. Add the `todo` in the list of todos (in my case, I've added the todo in the first place, so that the newly todo shows up first)
+7. Add a checkbox to mark the todo as completed or not.
+8. Move the checkbox and the name of a todo inside a new component: `todo-item`. Add the `v-for` directive on the component. Pass the `index` and the `todo` to this component as a prop.
+9. Add an event listener to the checkbox and mark it as checked based on the value of `todo.done`. If the checkbox is toggled, send a custom event named `toggle`.
+10. Capture the `toggle` event in the main component and toggle the todo.
+11. Add an icon to the todo to delete it. 
+12. Add a `click` event on this icon to emit a `delete` event to the parent component.
+13. Capture the `delete` event on the parent component and delete the todo.
+14. Add an edit mode to the todo by rendering an input if you click on the todo's name.
+15. Send the edited todo to the parent using a custom event named `edit` to edit the todo. You can send this event on clicking on a button. In my case, I've chosen to send this event when the user taps `Enter`.
+16. Create an array of three filters in the `data` object: `["all", "active", "done"]`
+17. Render the filters in the main component using `v-for`.
+18. Add a `currentFilter` property to the data and set the initial value to `all`.
+19. Add a `click` event to the filter item that will set the `currentFilter` to the filter that's being clicked.
+20. Add a computed property called `filteredTodos` to the main instance and filter the correct todos depending on the value of `currentFilter`.
+21. In the `v-for` statement in `todo-item`, replace the `todos` list by the `filteredTodos` computed property.
+22. Differentiate the filter by styling the active one.
+
+Some takeaways from this code:
+
+- The design have been done with [Tailwind CSS](https://tailwindcss.com/). It's a utility-first CSS framework so there are a loooot of classes. It may makes the template code bloated but it's very handy when you're used to.
+- It's no big deal if you have trouble understanding the full code. The goal here is to globally understand how Vue works and how we can apply what we've learnt on a real app.
+
+
