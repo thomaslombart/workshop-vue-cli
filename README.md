@@ -199,4 +199,33 @@ Some takeaways from this code:
 - The design have been done with [Tailwind CSS](https://tailwindcss.com/). It's a utility-first CSS framework so there are a loooot of classes. It may makes the template code bloated but it's very handy when you're used to.
 - It's no big deal if you have trouble understanding the full code. The goal here is to globally understand how Vue works and how we can apply what we've learnt on a real app.
 
+## Vue CLI
 
+In this part, we will just look at a very basic project created with Vue CLI. It's an awesome tool because it helps us setting our Vue project that provides support for a lot of popular JS tools such as Webpack, Babel, etc.
+
+As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installed on our machines. Optionally You can also install [Yarn](https://yarnpkg.com/).
+
+**Note** : if you're a macOS user, you can install these tools faster using [Homebrew](https://brew.sh/), just run `brew install node` and `brew install yarn`.
+
+Open a terminal and run `yarn global add @vue/cli` to install Vue CLI globally. Then, run `vue --version` and make sure you have the version 3.
+
+Final steps :
+
+1. Run `vue create movies`
+2. Select `Manually select features`
+3. Select `Babel, Linter/Formatter and Unit Testing`
+4. Select `ESLint + Standard config`
+5. Select `Lint on save`
+6. Select `Jest` as unit testing solution
+7. Select `In dedicated config files` for Babel, PostCSS, etc.
+8. Answer yes or no, depends on if you like this preset!
+9. Select `Use Yarn` as package manager
+10. You should see a progress bar that is gradually filling...
+11. You see `🎉 Successfully created project movies`
+12. `cd` into your project : `cd movies`
+13. Run `yarn serve` 
+14. Open your browser and visit `http://localhost:8080/`
+
+Congratulations! You have built your first Vue app.
+
+Open your project in your favorite code editor (I recommend [VS Code](https://code.visualstudio.com/)).
