@@ -203,29 +203,25 @@ Some takeaways from this code:
 
 In this part, we will just look at a very basic project created with Vue CLI. It's an awesome tool because it helps us setting our Vue project that provides support for a lot of popular JS tools such as Webpack, Babel, etc.
 
-As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installed on our machines. Optionally You can also install [Yarn](https://yarnpkg.com/).
+As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installed on our machines.
 
-**Note** : if you're a macOS user, you can install these tools faster using [Homebrew](https://brew.sh/), just run `brew install node` and `brew install yarn`.
+**Note** : if you're a macOS user, you can install Node faster using [Homebrew](https://brew.sh/), just run `brew install node`.
 
-Open a terminal and run `yarn global add @vue/cli` to install Vue CLI globally. Then, run `vue --version` and make sure you have the version 3.
 
 Final steps :
 
-1. Run `vue create movies`
-2. Select `Manually select features`
-3. Select `Babel, Linter/Formatter and Unit Testing`
-4. Select `ESLint + Standard config`
+1. Run `vue create example`
+2. You have two choices: the default (which enables `babel` and `eslint`) or select `Manually select features`. For educational purposes, we will choose `Manually select features`.
+3. Select `Babel, Linter/Formatter`
+4. Select `ESLint with error prevention only`
 5. Select `Lint on save`
-6. Select `Jest` as unit testing solution
-7. Select `In dedicated config files` for Babel, PostCSS, etc.
-8. Answer yes or no, depends on if you like this preset!
-9. Select `Use Yarn` as package manager
-10. You should see a progress bar that is gradually filling...
-11. You see `🎉 Successfully created project movies`
-12. `cd` into your project : `cd movies`
-13. Run `yarn serve` 
-14. Open your browser and visit `http://localhost:8080/`
+6. Select `In dedicated config files` for Babel, PostCSS, ESLint, etc.
+7. Answer yes or no, depends on if you like this preset!
+8. Vue CLI will do the setup now. You should see a progress bar that is gradually filling...
+9. You see `🎉 Successfully created project example`.
+10. Follow the instructions provided by Vue CLI (`cd example && npm run serve`)
+11. Open your browser and visit `http://localhost:8080/`
 
-Congratulations! You have built your first Vue app.
+Congratulations! You have built your first Vue app using Vue CLI.
 
-Open your project in your favorite code editor (I recommend [VS Code](https://code.visualstudio.com/)).
+Open your newly created project with your favorite code editor (I recommend [VS Code](https://code.visualstudio.com/)).
