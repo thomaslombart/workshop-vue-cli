@@ -2,6 +2,10 @@
 
 **Important**: this workshop assumes you know the very basics of Vue (reactivity, directives like `v-if`, `v-for`, components and computed properties). If you don't please check the first [workshop](https://github.com/thomlom/workshop-vue-basics).
 
+## Prerequisites
+
+For this workshop , you need [Node.js](https://nodejs.org/en/) and [npm](https://www.npmjs.com/) installed.
+
 ## Explaining a To-Do list
 
 In the last workshop, your task was to build a to-do app that would allow you to add tasks, mark them as completed, edit and delete them. You could also filter them depending on their status and provide some design. Here is the full code:
