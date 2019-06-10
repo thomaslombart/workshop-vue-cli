@@ -352,3 +352,9 @@ It's your turn now, your task will be to build something similar as that:
 On load, you should see a first cat picture. By clicking on **New cat picture**, you get, well, a new cat picture. You'll need the [Random cat API](https://aws.random.cat/meow) to retrieve cats pictures.
 
 But what's an API, you might think?
+
+API stands for Application Programming Interface. Basically, it's an **interface** that **softwares can use to communicate with other softwares**. Here is a metaphor for a better understanding of an API.
+
+Let's pretend you're in a restaurant. What do you do? Well you sit at a table. A waiter comes and asks you what do you want to eat, you respond _lasagna, please_. The waiter goes to the kitchen and asks the cook to prepare lasagnas. The cook does a lot of complicated things related to cooking and give it to the waiter. The waiter comes back and there you go, you can now eat your lasagnas.
+
+Well, the concept is the same when you use an API. You give the waiter (the messenger) some input, he transmits the message to the system (the cook), the system does complicated stuff, gives the response to the messenger and he transmits this response to you.
