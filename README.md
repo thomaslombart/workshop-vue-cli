@@ -381,7 +381,7 @@ vue create .
 
 Vue will ask you if you want to generate the project in the current directory, say yes, choose the default and you're good to go.
 
-Now, go ahead and build the random cat pictures app. Once finished, we'll see how to deploy it with Netlify.
+**Now, go ahead and build the random cat pictures app.** Once finished, we'll see how to deploy it with Netlify.
 
 ## Deploying with Netlify
 
