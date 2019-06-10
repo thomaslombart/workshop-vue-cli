@@ -337,7 +337,7 @@ Once you installed it, you should see a "V" icon in your toolbar.
 Now, go to [to-do-list](./to-do-list) and run the `serve` script:
 
 ```sh
-cd 01-to-do-list
+cd to-do-list
 npm run serve
 ```
 
@@ -347,9 +347,11 @@ Go to `localhost:8080`, open your developer tools and search for the `Vue` tab. 
 
 It's your turn now, your task will be to build something similar as that:
 
-![Cat pics](./cat-pics/cat-pics.png)
+<img src="./cat-pics/cat-pics.png" width="500px"/>
 
 On load, you should see a first cat picture. By clicking on **New cat picture**, you get, well, a new cat picture. You'll need the [Random cat API](https://aws.random.cat/meow) to retrieve cats pictures.
+
+---
 
 But what's an API, you might think?
 
@@ -358,3 +360,55 @@ API stands for Application Programming Interface. Basically, it's an **interface
 Let's pretend you're in a restaurant. What do you do? Well you sit at a table. A waiter comes and asks you what do you want to eat, you respond _lasagna, please_. The waiter goes to the kitchen and asks the cook to prepare lasagnas. The cook does a lot of complicated things related to cooking and give it to the waiter. The waiter comes back and there you go, you can now eat your lasagnas.
 
 Well, the concept is the same when you use an API. You give the waiter (the messenger) some input, he transmits the message to the system (the cook), the system does complicated stuff, gives the response to the messenger and he transmits this response to you.
+
+---
+
+As we'll deploy this project with Netlify, it's important that you create this project from GitHub. To do so, go on GitHub and create a new repository (that you can call `cat-pics` for example). Once done, clone it locally:
+
+<img src="./screenshots/git-clone.png" width="600px">
+
+Then, init your Vue repository from the repository:
+
+```sh
+git clone https://github.com/USERNAME/REPO_NAME.git
+cd REPO_NAME
+vue create .
+```
+
+Vue will ask you if you want to generate the project in the current directory, say yes, choose the default and you're good to go.
+
+Now, go ahead and build the random cat pictures app. Once finished, we'll see how to deploy it with Netlify.
+
+## Deploying with Netlify
+
+Your app works in `localhost` great. But what if you want to make it available to the world? [Netlify](https://www.netlify.com/) is a great tool to for that and is easy to use.
+
+Sign up or login on Netlify:
+
+<img src="./screenshots/netlify-login.png" width="600px">
+
+Click on **New site from Git** (that's why you needed to push your app's code on GitHub 😉):
+
+<img src="./screenshots/netlify-new-site.png" width="600px">
+
+Under **Continuous Deployment**, click on **GitHub**:
+
+<img src="./screenshots/netlify-create-1.png" width="600px">
+
+Then, on the repo you want to deploy:
+
+<img src="./screenshots/netlify-create-2.png" width="600px">
+
+Finally, under **basic build settings**, add `npm run build` as the **Build command** and `dist` as the **Publish directory**. Remember, the `build` command will generate a production-ready bundle in a `dist` directory:
+
+<img src="./screenshots/netlify-create-3.png" width="600px">
+
+Netlify will deploy your site:
+
+<img src="./screenshots/netlify-deploy-1.png" width="600px">
+
+After a few minutes, your site is deployed 🎉:
+
+<img src="./screenshots/netlify-deploy-2.png" width="600px">
+
+Congratulations, you've completed the workshop! 🎉😄
