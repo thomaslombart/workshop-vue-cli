@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="container mx-auto p-8 md:w-1/2">
-    <h2 class="text-3xl text-gray-900 uppercase tracking-wide">To-Do App</h2>
+  <div id="app">
+    <h2 class="title">To-Do App</h2>
     <todo-input @addTodo="addTodo"></todo-input>
-    <ul class="list-reset" v-if="filteredTodos.length">
+    <ul class="list" v-if="filteredTodos.length">
       <todo-item
         v-for="(todo, i) in filteredTodos"
         :key="`${todo.name}-${i}`"
@@ -13,11 +13,12 @@
         @edit="editItem"
       ></todo-item>
     </ul>
-    <p
-      v-else
-      class="bg-gray-100 p-2 w-full text-center text-xl border border-gray-300 font-bold text-gray-700"
-    >No to-dos!</p>
-    <todo-filters @changeCurrentFilter="changeCurrentFilter" :currentFilter="currentFilter"></todo-filters>
+    <p v-else class="no-results">No to-dos!</p>
+    <todo-filters
+      class="filters"
+      @changeCurrentFilter="changeCurrentFilter"
+      :currentFilter="currentFilter"
+    ></todo-filters>
   </div>
 </template>
 
@@ -90,5 +91,45 @@ export default {
 <style>
 #app {
   font-family: Roboto, Helvetica, Arial, sans-serif;
+}
+</style>
+
+<style scoped>
+#app {
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+.title {
+  font-size: 2rem;
+  color: #1a202c;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.list {
+  list-style: none;
+  padding: 0;
+}
+
+.no-results {
+  background-color: #f7fafc;
+  padding: 0.5rem;
+  width: 100%;
+  text-align: center;
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #4a5568;
+  border: 1px solid #e2e8f0;
+}
+
+.filters {
+  margin-top: 1rem;
+}
+
+@media screen and (min-width: 768px) {
+  #app {
+    width: 50%;
+  }
 }
 </style>

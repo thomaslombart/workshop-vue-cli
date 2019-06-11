@@ -1,11 +1,11 @@
 <template>
-  <ul class="list-reset flex mt-3">
+  <ul class="list">
     <li
       :key="filter"
       v-for="filter in filters"
       @click="$emit('changeCurrentFilter', filter)"
-      class="rounded-full uppercase px-2 py-1 text-xs font-bold mr-2 cursor-pointer"
-      :class="currentFilter === filter ? 'bg-blue-700 text-white' : 'bg-gray-100 text-gray-700'"
+      class="filter"
+      :class="{'filter--active': currentFilter === filter}"
     >{{ filter }}</li>
   </ul>
 </template>
@@ -22,3 +22,27 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.list {
+  display: flex;
+  list-style: none;
+}
+
+.filter {
+  border-radius: 9999px;
+  text-transform: uppercase;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  font-weight: bold;
+  cursor: pointer;
+  margin-right: 0.25rem;
+  background-color: #f7fafc;
+  color: #4a5568;
+}
+
+.filter--active {
+  background-color: #2b6cb0;
+  color: #fff;
+}
+</style>

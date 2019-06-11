@@ -1,7 +1,7 @@
 <template>
   <input
     v-model="nextTodo"
-    class="mt-4 mb-4 p-3 bg-gray-100 outline-none w-full rounded leading-tight"
+    class="input"
     @keyup.enter="emitAddTodo"
     placeholder="Type your task here"
   >
@@ -24,3 +24,18 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+.input {
+  margin-top: 2rem 0;
+  padding: 1rem;
+  background-color: #f7fafc;
+  outline: none;
+  box-sizing: border-box;
+  font-size: 1rem;
+  width: 100%;
+  border: none;
+  border-radius: 0.25rem;
+  line-height: 1.25;
+}
+</style>
