@@ -15,24 +15,16 @@ In the last workshop, your task was to build a to-do app that would allow you to
   <head>
     <meta charset="UTF-8" />
     <title>To-Do App</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/tailwindcss/dist/tailwind.min.css"
-      rel="stylesheet"
-    />
+    <link href="style.css" rel="stylesheet" />
   </head>
 
   <body>
-    <div id="app" class="container mx-auto p-8 md:w-1/2">
-      <h2 class="text-3xl text-grey-darkest uppercase tracking-wide">
+    <div id="app">
+      <h2 class="title">
         To-Do App
       </h2>
-      <input
-        v-model="nextTodo"
-        class="mt-4 mb-4 p-3 bg-grey-lighter outline-none w-full rounded leading-tight"
-        @keyup.enter="addTodo"
-        placeholder="Type your task here"
-      />
-      <ul class="list-reset" v-if="filteredTodos.length">
+      <todo-input @addtodo="addTodo"></todo-input>
+      <ul class="list-todo" v-if="filteredTodos.length">
         <todo-item
           v-for="(todo, i) in filteredTodos"
           :key="`${todo.name}-${i}`"
@@ -43,19 +35,14 @@ In the last workshop, your task was to build a to-do app that would allow you to
           @edit="editItem"
         ></todo-item>
       </ul>
-      <p v-else class="text-center m-8 text-2xl font-bold text-grey-darker">
+      <p v-else class="no-results">
         No to-dos!
       </p>
-      <ul class="list-reset flex mt-3">
-        <li
-          v-for="filter in filters"
-          @click="currentFilter = filter"
-          class="rounded-full uppercase px-2 py-1 text-xs font-bold mr-2 cursor-pointer"
-          :class="currentFilter === filter ? 'bg-blue-dark text-white' : 'bg-grey-lighter text-grey-darker'"
-        >
-          {{ filter }}
-        </li>
-      </ul>
+      <todo-filters
+        class="filters"
+        @changeCurrentFilter="changeCurrentFilter"
+        :currentFilter="currentFilter"
+      ></todo-filters>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/vue"></script>
     <script src="main.js"></script>
@@ -66,22 +53,46 @@ In the last workshop, your task was to build a to-do app that would allow you to
 And for the script part:
 
 ```js
+Vue.component("todo-input", {
+  template: `
+    <input
+      v-model="nextTodo"
+      class="input"
+      @keyup.enter="emitAddTodo"
+      placeholder="Type your task here"
+    />
+  `,
+  data() {
+    return {
+      nextTodo: ""
+    };
+  },
+  methods: {
+    emitAddTodo() {
+      if (this.nextTodo) {
+        this.$emit("addtodo", this.nextTodo);
+        this.nextTodo = "";
+      }
+    }
+  }
+});
+
 Vue.component("todo-item", {
   template: `
-  	<li class="flex p-4 items-center mt-2 bg-grey-lightest">
-      <input type="checkbox" class="-mt-1" @change="$emit('toggle', todo)" :checked="todo.done"/>
-      <div class="flex items-center justify-between w-full" >
+  	<li class="todo-item-container">
+      <input type="checkbox" @change="$emit('toggle', todo)" :checked="todo.done"/>
+      <div class="todo-item" >
         <span 
           v-if="!isEditing" 
           @click="isEditing = true" 
-          class="ml-4 cursor-pointer" 
-          :class="{'line-through text-grey-dark': todo.done}"
+          class="todo-name" 
+          :class="{'todo-name--done': todo.done}"
         >
         {{ todo.name }}
         </span>
         <input
           v-else
-          class="ml-4 mr-2 outline-none p-2 border-grey-light rounded border-2 w-full" 
+          class="todo-edit" 
           type="text" 
           v-model="editedTodo" 
           @keyup.enter="edit"
@@ -89,7 +100,7 @@ Vue.component("todo-item", {
         />
         <svg 
           @click="$emit('delete', index)" 
-          class="fill-current h-5 w-5 text-red" 
+          class="delete-icon" 
           role="button" 
           xmlns="http://www.w3.org/2000/svg" 
           viewBox="0 0 20 20"
@@ -115,12 +126,32 @@ Vue.component("todo-item", {
   }
 });
 
+Vue.component("filters", {
+  template: `
+    <ul class="list">
+      <li
+        :key="filter"
+        v-for="filter in filters"
+        @click="$emit('changeCurrentFilter', filter)"
+        class="filter"
+        :class="{'filter--active': currentFilter === filter}"
+      >{{ filter }}</li>
+    </ul>
+  `,
+  props: {
+    currentFilter: String
+  },
+  data() {
+    return {
+      filters: ["all", "active", "done"]
+    };
+  }
+});
+
 new Vue({
   el: "#app",
   data: {
     todos: [],
-    nextTodo: "",
-    filters: ["all", "active", "done"],
     currentFilter: "all"
   },
   mounted() {
@@ -152,11 +183,9 @@ new Vue({
     }
   },
   methods: {
-    addTodo() {
-      if (this.nextTodo) {
-        this.todos = [{ name: this.nextTodo, done: false }, ...this.todos];
-        this.nextTodo = "";
-      }
+    addTodo(nextTodo) {
+      console.log("no");
+      this.todos = [{ name: nextTodo, done: false }, ...this.todos];
     },
     toggle(todo) {
       todo.done = !todo.done;
@@ -166,6 +195,9 @@ new Vue({
     },
     editItem(name, index) {
       this.todos[index].name = name;
+    },
+    changeCurrentFilter(filter) {
+      this.currentFilter = filter;
     }
   }
 });
