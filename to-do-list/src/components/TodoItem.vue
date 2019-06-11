@@ -90,6 +90,7 @@ export default {
 }
 
 .delete-icon {
+  cursor: pointer;
   fill: #c53030;
   height: 20px;
   width: 20px;
