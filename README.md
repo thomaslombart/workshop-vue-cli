@@ -79,30 +79,30 @@ Vue.component("todo-input", {
 
 Vue.component("todo-item", {
   template: `
-  	<li class="todo-item-container">
+    <li class="todo-item-container">
       <input type="checkbox" @change="$emit('toggle', todo)" :checked="todo.done"/>
       <div class="todo-item" >
-        <span 
-          v-if="!isEditing" 
-          @click="isEditing = true" 
-          class="todo-name" 
+        <span
+          v-if="!isEditing"
+          @click="isEditing = true"
+          class="todo-name"
           :class="{'todo-name--done': todo.done}"
         >
         {{ todo.name }}
         </span>
         <input
           v-else
-          class="todo-edit" 
-          type="text" 
-          v-model="editedTodo" 
+          class="todo-edit"
+          type="text"
+          v-model="editedTodo"
           @keyup.enter="edit"
           @keyup.esc="isEditing = false"
         />
-        <svg 
-          @click="$emit('delete', index)" 
-          class="delete-icon" 
-          role="button" 
-          xmlns="http://www.w3.org/2000/svg" 
+        <svg
+          @click="$emit('delete', index)"
+          class="delete-icon"
+          role="button"
+          xmlns="http://www.w3.org/2000/svg"
           viewBox="0 0 20 20"
         >
           <title>Close</title>
@@ -210,25 +210,27 @@ Here are the different steps to build this app:
 3. Render an initial list of todos in the template (don't forget to use `key`!)
 4. Add an input and bind it to a data property (`nextTodo`) using `v-model`.
 5. Create an add button or use a `keyup` event to add the todo in the list of todos.
-6. Add the `todo` in the list of todos (in my case, I've added the todo in the first place, so that the newly todo shows up first)
-7. Add a checkbox to mark the todo as completed or not.
-8. Move the checkbox and the name of a todo inside a new component: `todo-item`. Add the `v-for` directive on the component. Pass the `index` and the `todo` to this component as a prop.
-9. Add an event listener to the checkbox and mark it as checked based on the value of `todo.done`. If the checkbox is toggled, send a custom event named `toggle`.
-10. Capture the `toggle` event in the main component and toggle the todo.
-11. Add an icon to the todo to delete it.
-12. Add a `click` event on this icon to emit a `delete` event to the parent component.
-13. Capture the `delete` event on the parent component and delete the todo.
-14. Add an edit mode to the todo by rendering an input if you click on the todo's name.
-15. Send the edited todo to the parent using a custom event named `edit` to edit the todo. You can send this event on clicking on a button. In my case, I've chosen to send this event when the user taps `Enter`.
-16. Create an array of three filters in the `data` object: `["all", "active", "done"]`
-17. Render the filters in the main component using `v-for`.
-18. Add a `currentFilter` property to the data and set the initial value to `all`.
-19. Add a `click` event to the filter item that will set the `currentFilter` to the filter that's being clicked.
-20. Add a computed property called `filteredTodos` to the main instance and filter the correct todos depending on the value of `currentFilter`.
-21. In the `v-for` statement in `todo-item`, replace the `todos` list by the `filteredTodos` computed property.
-22. Differentiate the filter by styling the active one.
-23. To save the todos in the local storage, add a **deep** watcher on the `todos` array. This watcher will be triggered on every change and will set the todos in the local storage.
-24. When the main component is mounted fetch the todos in the local storage and set them in the data.
+6. Once done, we can move this in a new component called `todo-input`.
+7. Change the `keyup` event handler in the new component. This will just emit an `addtodo` event that the main component will capture.
+8. Capture the `addtodo` event in the main component and bind it to a methods that adds the `todo` in the list of todos (in my case, I've added the todo in the first place, so that the newly todo shows up first)
+9. Add a checkbox to mark the todo as completed or not.
+10. Move the checkbox and the name of a todo inside a new component: `todo-item`. Add the `v-for` directive on the component. Pass the `index` and the `todo` to this component as a prop.
+11. Add an event listener to the checkbox and mark it as checked based on the value of `todo.done`. If the checkbox is toggled, send a custom event named `toggle`.
+12. Capture the `toggle` event in the main component and toggle the todo.
+13. Add an icon to the todo to delete it.
+14. Add a `click` event on this icon to emit a `delete` event to the parent component.
+15. Capture the `delete` event on the parent component and delete the todo.
+16. Add an edit mode to the todo by rendering an input if you click on the todo's name.
+17. Send the edited todo to the parent using a custom event named `edit` to edit the todo. You can send this event on clicking on a button. In my case, I've chosen to send this event when the user taps `Enter`.
+18. Create a new component called `filters` that contains an array of three filters in the `data` object: `["all", "active", "done"]`
+19. Render the filters in a list using `v-for`.
+20. Add a `currentFilter` property to the main component (the one that mouns to `#app`) and set the initial value to `all`. Then pass a `currentFilter` prop to the `filters` component.
+21. Add a `click` event to the filter item that will emit a `changeCurrentFilter` to the main component. This will change the `currentFilter` to the filter that's being clicked.
+22. Add a computed property called `filteredTodos` to the main instance and filter the correct todos depending on the value of `currentFilter`.
+23. In the `v-for` statement in `todo-item`, replace the `todos` list by the `filteredTodos` computed property.
+24. Differentiate the filter by styling the active one.
+25. To save the todos in the local storage, add a **deep** watcher on the `todos` array. This watcher will be triggered on every change and will set the todos in the local storage.
+26. When the main component is mounted fetch the todos in the local storage and set them in the data.
 
 Some takeaways from this code:
 
