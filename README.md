@@ -210,7 +210,7 @@ Here are the different steps to build this app:
 3. Render an initial list of todos in the template (don't forget to use `key`!)
 4. Add an input and bind it to a data property (`nextTodo`) using `v-model`.
 5. Create an add button or use a `keyup` event to add the todo in the list of todos.
-6. Once done, we can move this in a new component called `todo-input`.
+6. Once done, we can move all of this (the input + event handlers) in a new component called `todo-input`.
 7. Change the `keyup` event handler in the new component. This will just emit an `addtodo` event that the main component will capture.
 8. Capture the `addtodo` event in the main component and bind it to a methods that adds the `todo` in the list of todos (in my case, I've added the todo in the first place, so that the newly todo shows up first)
 9. Add a checkbox to mark the todo as completed or not.
