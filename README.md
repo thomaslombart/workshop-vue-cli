@@ -232,10 +232,7 @@ Here are the different steps to build this app:
 25. To save the todos in the local storage, add a **deep** watcher on the `todos` array. This watcher will be triggered on every change and will set the todos in the local storage.
 26. When the main component is mounted fetch the todos in the local storage and set them in the data.
 
-Some takeaways from this code:
-
-- The design have been done with [Tailwind CSS](https://tailwindcss.com/). It's a utility-first CSS framework so there are a loooot of classes. It may makes the template code bloated but it's very handy when you're used to.
-- It's no big deal if you have trouble understanding the full code. The goal here is to globally understand how Vue works and how we can apply what we've learnt on a real app.
+It's no big deal if you have trouble understanding the full code. The goal here is to globally understand how Vue works and how we can apply what we've learnt on a real app.
 
 ## Vue CLI
 
