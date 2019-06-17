@@ -1,6 +1,6 @@
 # Vue basics: part 2
 
-**Important**: this workshop assumes you know the very basics of Vue (reactivity, directives like `v-if`, `v-for`, components and computed properties). If you don't please check the first [workshop](https://github.com/thomlom/workshop-vue-basics).
+**Important**: this workshop assumes you know the very basics of Vue (reactivity, directives like `v-if`, `v-for`, components, lifecycle hooks, etc). If you don't please check the first [workshop](https://github.com/thomlom/workshop-vue-basics).
 
 ## Prerequisites
 
