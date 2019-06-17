@@ -184,7 +184,6 @@ new Vue({
   },
   methods: {
     addTodo(nextTodo) {
-      console.log("no");
       this.todos = [{ name: nextTodo, done: false }, ...this.todos];
     },
     toggle(todo) {
