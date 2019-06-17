@@ -242,6 +242,12 @@ As a prerequisite, we will need [Node.js](https://nodejs.org/en/) to be installe
 
 **Note** : if you're a macOS user, you can install Node faster using [Homebrew](https://brew.sh/), just run `brew install node`.
 
+Before creating a project, you'll need to install Vue CLI first:
+
+```sh
+npm install -g @vue/cli
+```
+
 1. Run `vue create example`
 2. You have two choices: the default (which enables `babel` and `eslint`) or select `Manually select features`. For educational purposes, we will choose `Manually select features`.
 3. Select `Babel, Linter/Formatter`
